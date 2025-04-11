@@ -72,8 +72,8 @@ def evc_transform_neutral(R: np.ndarray, G: np.ndarray, B: np.ndarray, asShotNeu
     r_neutral, g_neutral, b_neutral = asShotNeutral
 
     R_trans = R / r_neutral
-    G_trans = B / g_neutral
-    B_trans = G / b_neutral
+    G_trans = G / g_neutral
+    B_trans = B / b_neutral
     ### END STUDENT CODE
 
 
@@ -99,15 +99,20 @@ def evc_interpolate(red : np.ndarray, green : np.ndarray, blue : np.ndarray) -> 
 	# NOTE: The following three lines can be removed. They prevent the framework
     #       from crashing.
 
-    filter = np.array([
+    filter_green = np.array([
         [0.00, 0.25, 0.00],
         [0.25, 1.00, 0.25],
         [0.00, 0.25, 0.00]
     ])
+    filter_red_and_blue = np.array([
+        [0.25, 0.50, 0.25],
+        [0.50, 1.00, 0.50],
+        [0.25, 0.50, 0.25]
+    ])
 
-    R_inter = scipy.ndimage.correlate(red, filter, mode='constant')
-    G_inter = scipy.ndimage.correlate(green, filter, mode='constant')
-    B_inter = scipy.ndimage.correlate(blue, filter, mode='constant')
+    R_inter = scipy.ndimage.correlate(red, filter_red_and_blue, mode='constant')
+    G_inter = scipy.ndimage.correlate(green, filter_green, mode='constant')
+    B_inter = scipy.ndimage.correlate(blue, filter_red_and_blue, mode='constant')
     ### END STUDENT CODE
 
 
@@ -131,7 +136,7 @@ def evc_concat(R: np.ndarray, G: np.ndarray, B: np.ndarray) -> np.ndarray:
     # NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
 
-    result = np.zeros([*R.shape[:2], 3])
+    result = np.stack((R, G, B), axis=-1)
     ### END STUDENT CODE
 
 

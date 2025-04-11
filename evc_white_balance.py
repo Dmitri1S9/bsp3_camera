@@ -23,8 +23,15 @@ def evc_white_balance(input_image: np.ndarray, white: np.ndarray) -> np.ndarray:
     #       during the histogram clipping.
     # NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
-
+    r_white, g_white, b_white = white
     result = np.copy(input_image)
+    r_white = 1e-10 if r_white == 0 else r_white
+    g_white = 1e-10 if g_white == 0 else g_white
+    b_white = 1e-10 if b_white == 0 else b_white
+
+    result[:, :, 0] /= r_white
+    result[:, :, 1] /= g_white
+    result[:, :, 2] /= b_white
     ### END STUDENT CODE
     
     result = np.minimum(result, 1)

@@ -6,7 +6,7 @@ import numpy as np
 
 def evc_compute_binary(input_image: np.ndarray, x: float, top: int) -> np.ndarray:
     """ evc_compute_binary computes a binary image with the specified threshold x.
-    
+
       INPUT
       input_image ... RGB image
       x           ... scalar threshold
@@ -27,8 +27,13 @@ def evc_compute_binary(input_image: np.ndarray, x: float, top: int) -> np.ndarra
     # NOTE: The following line can be removed. It prevents the framework from
     #       crashing.
 
-    result = np.zeros(input_image.shape)
+    if top == 0:
+        result = (input_image <= x).astype(float)
+    else:
+        result = (input_image > x).astype(float)
+
     ### END STUDENT CODE
 
 
     return result
+

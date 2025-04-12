@@ -27,8 +27,10 @@ def evc_prepare_histogram_range(input_image: np.ndarray, low: float, high: float
     # NOTE: The following two lines can be removed. They prevent the
     #       framework from crashing.
 
-    newLow = low
-    newHigh = high
+    max_intensity = np.max(input_image)
+
+    newLow = max(low, 0)
+    newHigh = min(high, max_intensity)
     ### END STUDENT CODE
     
     
@@ -54,7 +56,7 @@ def evc_transform_histogram(input_image: np.ndarray, newLow: float, newHigh: flo
 	# NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
 
-    result = np.zeros(input_image.shape)
+    result = (input_image - newLow) / (newHigh - newLow)
     ### END STUDENT CODE
 
     
@@ -76,7 +78,7 @@ def evc_clip_histogram(input_image: np.ndarray) -> np.ndarray:
 	# NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
 
-    result = np.zeros(input_image.shape)
+    result = np.clip(input_image, 0, 1)
     ### END STUDENT CODE
 
     

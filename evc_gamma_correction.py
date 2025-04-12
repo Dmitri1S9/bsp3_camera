@@ -25,8 +25,9 @@ def evc_compute_brightness(input_image: np.ndarray) -> np.ndarray:
     ### STUDENT CODE
     # TODO: Implement this function.
     # HINT: The function 'rgb2gray' might be useful.
-
-    brightness = np.ones(input_image.shape)
+    max_bright = np.max(input_image)
+    norm_img = input_image / max_bright # for each pixel max value of brightness is less than 1
+    brightness = rgb2gray(norm_img) * max_bright
     ### END STUDENT CODE
 
 
@@ -36,7 +37,7 @@ def evc_compute_chromaticity(input_image: np.ndarray, brightness: np.ndarray) ->
     """ evc_compute_chromaticity calculates the chromaticity of the 'input' image
     using the 'brightness' values. Therefore the color channels of the input
     image are individually divided by the brightness values.
-    
+
       INPUT
       input_image   ... image, dimension (n, m, 3)
       brightness    ... brightness values, dimension (n, m)
@@ -49,8 +50,13 @@ def evc_compute_chromaticity(input_image: np.ndarray, brightness: np.ndarray) ->
     # HINT: The function 'np.dstack' might be useful.
     # NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
+    brightness = 1e-10 if brightness[:, :] == 0 else brightness[:, :]
 
-    chromaticity = np.zeros(input_image.shape)
+    chromaticity = np.dstack(
+        (input_image[:, :, 0] / brightness,
+         input_image[:, :, 1] / brightness,
+         input_image[:, :, 2] / brightness)
+    )
     ### END STUDENT CODE
 
 
@@ -73,8 +79,8 @@ def evc_gamma_correct(input_image: np.ndarray, gamma: float) -> np.ndarray:
     # HINT: Make sure the program does not crash because of a division by 0
     # NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
-
-    corrected = np.zeros(input_image.shape)
+    gamma = 1e-10 if gamma < 1e-10 else gamma
+    corrected = input_image ** (1 / gamma)
     ### END STUDENT CODE
 
 
@@ -96,7 +102,11 @@ def evc_reconstruct(brightness_corrected: np.ndarray, chromaticity) -> np.ndarra
     # NOTE:  The following line can be removed. It prevents the framework
     #       from crashing.
 
-    result = np.zeros(brightness_corrected.shape)
+    result = np.dstack((
+        chromaticity[:, :, 0] * brightness_corrected,
+        chromaticity[:, :, 1] * brightness_corrected,
+        chromaticity[:, :, 2] * brightness_corrected
+    ))
     ### END STUDENT CODE
 
 

@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99baf484-cac3-4b60-a802-865f47de72ee" name="Changes" comment="demosaic&#10;white balance">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="99baf484-cac3-4b60-a802-865f47de72ee" name="Changes" comment="gamma correction">
       <change beforePath="$PROJECT_DIR$/TASK_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evc_gamma_correction.py" beforeDir="false" afterPath="$PROJECT_DIR$/evc_gamma_correction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evc_compute_binary.py" beforeDir="false" afterPath="$PROJECT_DIR$/evc_compute_binary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evc_histogram_clipping.py" beforeDir="false" afterPath="$PROJECT_DIR$/evc_histogram_clipping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +131,7 @@
       <updated>1744384739405</updated>
       <workItem from="1744384741308" duration="782000" />
       <workItem from="1744386628821" duration="96000" />
-      <workItem from="1744386733694" duration="19915000" />
+      <workItem from="1744386733694" duration="22182000" />
     </task>
     <task id="LOCAL-00001" summary="demosaic&#10;white balance">
       <option name="closed" value="true" />
@@ -142,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744402772918</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="gamma correction">
+      <option name="closed" value="true" />
+      <created>1744447272944</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744447272944</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +157,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="demosaic&#10;white balance" />
-    <option name="LAST_COMMIT_MESSAGE" value="demosaic&#10;white balance" />
+    <MESSAGE value="gamma correction" />
+    <option name="LAST_COMMIT_MESSAGE" value="gamma correction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

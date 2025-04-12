@@ -55,8 +55,10 @@ def evc_transform_histogram(input_image: np.ndarray, newLow: float, newHigh: flo
     #       of the image, this function will create values larger than 1.
 	# NOTE: The following line can be removed. It prevents the framework
     #       from crashing.
-
-    result = (input_image - newLow) / (newHigh - newLow)
+    if newLow == newHigh:
+        result = input_image
+    else:
+        result = (input_image - newLow) / (newHigh - newLow)
     ### END STUDENT CODE
 
     
